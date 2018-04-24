@@ -6,7 +6,6 @@ import com.mvs.sampleapp.storage.callback.IResponseCallback;
 import com.mvs.sampleapp.storage.room.model.CountryDataModel;
 import com.mvs.util.ConvertUtil;
 
-import java.io.IOException;
 import java.util.List;
 
 public class RoomPreLoginStorageManager implements IPreLoginStorageManager {
@@ -17,7 +16,7 @@ public class RoomPreLoginStorageManager implements IPreLoginStorageManager {
     }
 
     @Override
-    public List<CountryData> getCountryList() throws IOException {
+    public List<CountryData> getCountryList() {
         List<CountryDataModel> countryDataModels = AppDatabase.getInstance().userDao().getAll();
         return ConvertUtil.toCountryList(countryDataModels);
     }
