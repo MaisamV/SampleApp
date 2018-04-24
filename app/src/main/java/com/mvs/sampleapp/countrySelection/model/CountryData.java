@@ -5,7 +5,7 @@ import com.mvs.tool.adapter.TitleDescRecyclerAdapter;
 public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerItem {
     private String iso;
     private String country;
-    private int code;
+    private String code;
 
     public String getIso() {
         return iso;
@@ -23,11 +23,11 @@ public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerIt
         this.country = country;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
