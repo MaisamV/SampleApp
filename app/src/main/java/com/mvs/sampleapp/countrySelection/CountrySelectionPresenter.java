@@ -29,7 +29,7 @@ public class CountrySelectionPresenter implements ICountrySelectionPresenter {
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
-                throw new RuntimeException("failed to refresh country data", t);
+                //failed to refresh country data
             }
         });
     }

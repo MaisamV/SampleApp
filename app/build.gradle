@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.mvs.sampleapp"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -17,9 +17,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url 'https://maven.google.com' }
+    }
 }
 
 dependencies {
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
+
+    compile 'com.android.support:recyclerview-v7:25.1.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }

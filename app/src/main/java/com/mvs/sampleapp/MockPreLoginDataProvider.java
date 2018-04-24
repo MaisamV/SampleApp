@@ -25,7 +25,7 @@ public class MockPreLoginDataProvider implements IPreLoginDataProvider {
         for (int i = 0; i < num; i++) {
             CountryData data = new CountryData();
             data.setCountry("Country" + i);
-            data.setCode(i);
+            data.setCode(String.valueOf(i));
             data.setIso("iso" + i);
             countryList.add(data);
         }
@@ -40,7 +40,7 @@ public class MockPreLoginDataProvider implements IPreLoginDataProvider {
         for (int i = 0; i < num; i++) {
             CountryData data = new CountryData();
             data.setCountry("Country" + i);
-            data.setCode(i);
+            data.setCode(String.valueOf(i));
             data.setIso("iso" + i);
             countryList.add(data);
         }
