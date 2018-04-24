@@ -14,13 +14,13 @@ import retrofit2.Response;
 public class RetrofitPreLoginApiManager implements IPreLoginApiManager {
 
     @Override
-    public void getCountryData(IResponseCallback callback) {
+    public void getCountryData(IResponseCallback<List<CountryData>> callback) {
         Call<List<CountryData>> call = WhichAppServiceAccess.getInstance().getCountryList();
         call.enqueue(new ServiceCallback<List<CountryData>>(callback));
     }
 
     @Override
-    public IResponse getCountryData() throws IOException {
+    public IResponse<List<CountryData>> getCountryData() throws IOException {
         Response<List<CountryData>> response = WhichAppServiceAccess.getInstance().getCountryList().execute();
         return new RetrofitResponse<>(response);
     }
