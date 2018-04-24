@@ -7,7 +7,6 @@ import android.content.Context;
 
 import com.mvs.sampleapp.storage.room.dao.CountryDao;
 import com.mvs.sampleapp.storage.room.model.CountryDataModel;
-import com.mvs.util.ObjectUtil;
 
 @Database(entities = {CountryDataModel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
@@ -18,15 +17,14 @@ public abstract class AppDatabase extends RoomDatabase {
         instance = null;
     }
 
-    public static AppDatabase getAppDatabase(Context context) {
-        if (ObjectUtil.isNull(instance)) {
-            instance =
-                    Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "country-database")
-                            // allow queries on the main thread.
-                            // Don't do this on a real app! See PersistenceBasicSample for an example.
-                            .allowMainThreadQueries()
-                            .build();
-        }
+    public static void init(Context context) {
+        instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "country-database")
+                // We should do transactions on another thread in production app
+                .allowMainThreadQueries()
+                .build();
+    }
+
+    public static AppDatabase getInstance() {
         return instance;
     }
 
