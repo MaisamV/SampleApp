@@ -11,7 +11,7 @@ public class WhichAppServiceAccess {
 
     public static final String SERVICE_PROTOCOL = "https";
     public static final String SERVICE_HOST = "api.whichapp.com";
-    public static final String SERVICE_PORT = "80";
+    public static final String SERVICE_PORT = "443";
 
     private static WhichAppServiceAccess instance;
 
