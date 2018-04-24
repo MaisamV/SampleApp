@@ -18,6 +18,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public static void init(Context context) {
+        //if we need temporary fast database, we can use Room#inMemoryDatabaseBuilder instead of following method
         instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "country-database")
                 // We should do transactions on another thread in production app
                 .allowMainThreadQueries()
