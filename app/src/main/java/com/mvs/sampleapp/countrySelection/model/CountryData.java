@@ -1,11 +1,22 @@
 package com.mvs.sampleapp.countrySelection.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.mvs.tool.adapter.TitleDescRecyclerAdapter;
 
 public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerItem {
+
+    @Expose
+    @SerializedName("iso")
     private String iso;
+
+    @Expose
+    @SerializedName("name")
     private String country;
-    private int code;
+
+    @Expose
+    @SerializedName("phone")
+    private String code;
 
     public String getIso() {
         return iso;
@@ -23,11 +34,11 @@ public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerIt
         this.country = country;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
