@@ -14,9 +14,6 @@ public interface CountryDao {
     @Query("SELECT * FROM country")
     List<CountryDataModel> getAll();
 
-    @Query("SELECT COUNT(*) from user")
-    int countUsers();
-
     @Insert
     void insertAll(CountryDataModel... users);
 
