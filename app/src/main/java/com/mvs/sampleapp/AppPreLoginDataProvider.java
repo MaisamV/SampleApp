@@ -7,22 +7,25 @@ import com.mvs.sampleapp.net.IPreLoginApiManager;
 import com.mvs.sampleapp.net.IResponse;
 import com.mvs.sampleapp.net.callback.IResponseCallback;
 import com.mvs.sampleapp.net.retrofit.RetrofitPreLoginApiManager;
+import com.mvs.sampleapp.storage.IPreLoginStorageManager;
+import com.mvs.sampleapp.storage.room.RoomPreLoginStorageManager;
 import com.mvs.tool.callback.OnLoadCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AppPreLoginDataProvider implements IPreLoginDataProvider {
 
     private IPreLoginApiManager preLoginApiManager;
+    private IPreLoginStorageManager preLoginStorageManager;
 
     public AppPreLoginDataProvider() {
         preLoginApiManager = new RetrofitPreLoginApiManager();
+        preLoginStorageManager = new RoomPreLoginStorageManager();
     }
 
     @Override
     public List<CountryData> getCountryList() {
-        throw new UnsupportedOperationException();
+        return preLoginStorageManager.getCountryList();
     }
 
     @Override
@@ -32,18 +35,8 @@ public class AppPreLoginDataProvider implements IPreLoginDataProvider {
 
     @Override
     public void getCountryListAsync(OnLoadCallback<List<CountryData>> callback) {
-        //TODO: retrieve from database
-        //mock data
-        int num = 50;
-        ArrayList countryList = new ArrayList(num);
-        for (int i = 0; i < num; i++) {
-            CountryData data = new CountryData();
-            data.setCountry("Country" + i);
-            data.setCode(String.valueOf(i));
-            data.setIso("iso" + i);
-            countryList.add(data);
-        }
-        callback.onLoad(countryList);
+        //TODO: do the task on another thread
+        callback.onLoad(preLoginStorageManager.getCountryList());
     }
 
     @Override
@@ -51,7 +44,9 @@ public class AppPreLoginDataProvider implements IPreLoginDataProvider {
         preLoginApiManager.getCountryData(new IResponseCallback<List<CountryData>>() {
             @Override
             public void onResponse(IResponse<List<CountryData>> response) {
-                callback.onLoad(response.getBody());
+                List<CountryData> dataList = response.getBody();
+                refreshDatabaseData(dataList);
+                callback.onLoad(dataList);
             }
 
             @Override
@@ -59,5 +54,10 @@ public class AppPreLoginDataProvider implements IPreLoginDataProvider {
                 callback.onFailure(t);
             }
         });
+    }
+
+    private void refreshDatabaseData(List<CountryData> dataList) {
+        preLoginStorageManager.deleteAllCountryData();
+        preLoginStorageManager.insertCountryList(dataList);
     }
 }
