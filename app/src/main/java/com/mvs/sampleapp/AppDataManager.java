@@ -26,6 +26,7 @@ public class AppDataManager {
     //singleton
     private AppDataManager() {
         //TODO: init preLoginDataProvider
+        preLoginDataProvider = new MockPreLoginDataProvider();
     }
 
     public IPreLoginDataProvider getPreLoginDataProvider() {
