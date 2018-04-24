@@ -1,6 +1,8 @@
 package com.mvs.sampleapp.countrySelection.model;
 
-public class CountryData {
+import com.mvs.tool.adapter.TitleDescRecyclerAdapter;
+
+public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerItem {
     private String iso;
     private String country;
     private int code;
@@ -27,5 +29,15 @@ public class CountryData {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    @Override
+    public String getDescription() {
+        return "+" + code;
+    }
+
+    @Override
+    public String getTitle() {
+        return country;
     }
 }
