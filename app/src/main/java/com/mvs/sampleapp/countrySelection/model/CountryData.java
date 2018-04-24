@@ -1,10 +1,21 @@
 package com.mvs.sampleapp.countrySelection.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.mvs.tool.adapter.TitleDescRecyclerAdapter;
 
 public class CountryData implements TitleDescRecyclerAdapter.TitleDescRecyclerItem {
+
+    @Expose
+    @SerializedName("iso")
     private String iso;
+
+    @Expose
+    @SerializedName("name")
     private String country;
+
+    @Expose
+    @SerializedName("phone")
     private String code;
 
     public String getIso() {
